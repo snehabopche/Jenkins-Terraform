@@ -5,6 +5,10 @@ pipeline {
       } 
     }
 
+    tools {
+     terraform 'terraform'
+    }
+
     stages {
       stage('fetch_latest_code') {
         steps {
