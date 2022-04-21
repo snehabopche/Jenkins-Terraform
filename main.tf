@@ -2,6 +2,13 @@ provider "aws" {
     region = var.aws_region
     profile = var.profile
 }
+terraform {
+  backend "s3" {
+    bucket = "nk-terraform-state-bucket"
+    key    = "terraform.tfstate"
+    region = var.aws_region
+  }
+}
 
 resource "aws_instance" "ec-2" {
   ami           = var.ec2_ami
