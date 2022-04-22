@@ -14,18 +14,13 @@ pipeline {
         steps {
          checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/kasturenishant/Jenkins-Terraform.git']]])       
  }
-      
-
       }
-      
-      
+           
       stage('TF Init&Plan') {
         steps {
-          withCredentials([usernameColonPassword(credentialsId: 'aws', variable: 'NK_AWS')]) {
           sh 'terraform init'
           sh 'terraform plan'
           }
-        }      
       }
 
       stage('Approval') {
