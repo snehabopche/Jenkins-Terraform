@@ -22,6 +22,7 @@ resource "aws_dynamodb_table" "dynamodblocktable" {
     name = "TestTableHashKey"
     type = "S"
   }
+}
 
 resource "aws_instance" "ec-2" {
   ami           = var.ec2_ami
