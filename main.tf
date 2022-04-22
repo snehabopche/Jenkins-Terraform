@@ -1,27 +1,28 @@
 provider "aws" {
     region = var.aws_region
 }
+resource "aws_s3_bucket" "b" {
+  bucket = "tf-nk-state"
 
-resource "aws_s3_bucket" "tf-nk-state" {
-  bucket = "${var.bucket_name}"
-  acl    = "${var.acl_value}"
+  tags = {
+    Name        = var.bucket_name
 
-  versioning {
-    enabled = true
   }
 }
+resource "aws_s3_bucket" "tf-nk-state" {
+  bucket = aws_s3_bucket.b.id
+}
 
-resource "aws_dynamodb_table" "tflocktable" {
-  name             = "${var.dynaodb_name}"
-  hash_key         = "TestTableHashKey"
-  stream_enabled   = true
+resource "aws_dynamodb_table" "dynamodblocktable" {
+  name           = var.dynamodb_name
+  read_capacity  = 5
+  write_capacity = 5
+  hash_key       = "TestTableHashKey"
 
   attribute {
     name = "TestTableHashKey"
     type = "S"
   }
-}
-
 
 resource "aws_instance" "ec-2" {
   ami           = var.ec2_ami
@@ -35,3 +36,4 @@ resource "aws_instance" "ec-2" {
     Name = "${var.environment}.${var.product}-${count.index+1}"
   }
 }
+
