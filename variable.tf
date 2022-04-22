@@ -2,6 +2,17 @@ variable "aws_region" {
   default = "ca-central-1"
 }
 
+variable "bucket_name" {
+  default = "tf-nk-state"
+ }
+
+variable "acl_value" {
+    default = "private"
+}
+
+variable "dynamodb_name" {
+    default = "dynamodblocktable"
+}
 variable "profile" {
   default = "NK_AWS"
 }
