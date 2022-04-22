@@ -23,7 +23,7 @@ pipeline {
            
       stage('TF Init&Plan') {
         steps {
-          sh 'terraform init'
+          sh 'terraform init -migrate-state'
           sh 'terraform plan'
           }
       }
@@ -32,7 +32,7 @@ pipeline {
 
       stage('TF Apply') {
         steps {
-          sh 'terraform destroy -auto-approve'
+          sh 'terraform apply -auto-approve'
         }
         
       }
