@@ -2,14 +2,26 @@ provider "aws" {
     region = var.aws_region
 }
 
-terraform {
-  backend "s3" {
-    bucket = "tf-nk-state"
-    key    = "terraform.tfstate"
-    region = "us-east-2"
-    dynamodb_table = "tflocktable"
+resource "aws_s3_bucket" "tf-nk-state" {
+  bucket = "${var.bucket_name}"
+  acl    = "${var.acl_value}"
+
+  versioning {
+    enabled = true
   }
 }
+
+resource "aws_dynamodb_table" "tflocktable" {
+  name             = "${var.dynaodb_name}"
+  hash_key         = "TestTableHashKey"
+  stream_enabled   = true
+
+  attribute {
+    name = "TestTableHashKey"
+    type = "S"
+  }
+}
+
 
 resource "aws_instance" "ec-2" {
   ami           = var.ec2_ami
