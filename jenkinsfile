@@ -4,6 +4,11 @@ pipeline {
         label "master"
       } 
     }
+     
+    environment {
+       AWS_ACCESS_KEY_ID     = credentials('ACCESS_ID')
+       AWS_SECRET_ACCESS_KEY = credentials('ACCESS_KEY')
+    }
 
     tools {
      terraform 'terraform'
@@ -27,7 +32,7 @@ pipeline {
 
       stage('TF Apply') {
         steps {
-          sh 'terraform destroy -auto-approve'
+          sh 'terraform apply -auto-approve'
         }
         
       }
