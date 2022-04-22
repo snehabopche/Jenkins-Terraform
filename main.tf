@@ -2,10 +2,7 @@ provider "aws" {
     region = var.aws_region
     
 }
-module "s3" {
-  source = "dynamodb_s3"
-  bucket_name = "tk-nk-state"
-}
+
     
 terraform {
   backend "s3" {
