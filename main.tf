@@ -12,7 +12,7 @@ resource "aws_s3_bucket" "tf-nk-state" {
 }
 
 resource "aws_dynamodb_table" "tflocktable" {
-  name             = "${var.dynaodb_name}"
+  name             = "${var.dynamodb_name}"
   hash_key         = "TestTableHashKey"
   stream_enabled   = true
 
