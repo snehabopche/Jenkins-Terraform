@@ -9,7 +9,7 @@ resource "aws_s3_bucket" "b" {
   }
 }
 resource "aws_s3_bucket" "tf-nk-state" {
-  bucket = aws_s3_bucket.b.id
+  bucket = "tf-nk-state"
 }
 
 resource "aws_dynamodb_table" "dynamodblocktable" {
