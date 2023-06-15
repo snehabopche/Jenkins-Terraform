@@ -1,9 +1,5 @@
 pipeline {
-    agent {
-      node {
-        label "master"
-      } 
-    }
+    agent any
      
     environment {
        AWS_ACCESS_KEY_ID     = credentials('ACCESS_ID')
@@ -17,7 +13,7 @@ pipeline {
     stages {
       stage('fetch_latest_code') {
         steps {
-         checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/kasturenishant/Jenkins-Terraform.git']]])       
+        git branch: 'master', url: 'https://github.com/kasturenishant/Jenkins-Terraform.git'
  }
       }
            
