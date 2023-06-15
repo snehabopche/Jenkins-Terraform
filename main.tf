@@ -1,28 +1,28 @@
 provider "aws" {
     region = var.aws_region
 }
-resource "aws_s3_bucket" "b" {
-  bucket = "tf-nk-state"
+# resource "aws_s3_bucket" "b" {
+#   bucket = "tf-nk-state"
 
-  tags = {
-    Name        = var.bucket_name
-  }
-}
-resource "aws_s3_bucket" "tf-nk-state" {
-  bucket = "tf-nk-state"
-}
+#   tags = {
+#     Name        = var.bucket_name
+#   }
+# }
+# resource "aws_s3_bucket" "tf-nk-state" {
+#   bucket = "tf-nk-state"
+# }
 
-resource "aws_dynamodb_table" "dynamodblocktable" {
-  name           = var.dynamodb_name
-  read_capacity  = 5
-  write_capacity = 5
-  hash_key       = "TestTableHashKey"
+# resource "aws_dynamodb_table" "dynamodblocktable" {
+#   name           = var.dynamodb_name
+#   read_capacity  = 5
+#   write_capacity = 5
+#   hash_key       = "TestTableHashKey"
 
-  attribute {
-    name = "TestTableHashKey"
-    type = "S"
-  }
-}
+#   attribute {
+#     name = "TestTableHashKey"
+#     type = "S"
+#   }
+# }
 
 resource "aws_instance" "ec-2" {
   ami           = var.ec2_ami
