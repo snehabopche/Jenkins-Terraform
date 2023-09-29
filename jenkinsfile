@@ -2,13 +2,10 @@ pipeline {
     agent any
      
     environment {
-       AWS_ACCESS_KEY_ID     = credentials('ACCESS_ID')
-       AWS_SECRET_ACCESS_KEY = credentials('ACCESS_KEY')
+       AWS_ACCESS_KEY_ID     = credentials('e93c675d-40ab-42fc-be34-2cbea566b47d')
+       AWS_SECRET_ACCESS_KEY = credentials('fee098f5-a008-4622-a0fa-8d8b02f6cce5')
     }
 
-    tools {
-     terraform 'terraform'
-    }
 
     stages {
       stage('fetch_latest_code') {
@@ -16,7 +13,7 @@ pipeline {
         git branch: 'master', url: 'https://github.com/kasturenishant/Jenkins-Terraform.git'
  }
       }
-           
+    
       stage('TF Init&Plan') {
         steps {
           sh 'terraform init'
@@ -24,13 +21,16 @@ pipeline {
           }
       }
 
-      
+      stage('Manual Approval') {
+            steps {
+      input(id: 'manual-approval', message: 'Do you want to proceed?', ok: 'Proceed')
+            }
+        }
 
-      stage('TF Apply') {
+       stage('TF Apply') {
         steps {
           sh 'terraform apply -auto-approve'
         }
-        
-      }
+      
     } 
   }
