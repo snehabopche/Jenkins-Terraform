@@ -16,7 +16,6 @@ pipeline {
     
       stage('TF Init&Plan') {
         steps {
-          tool name: 'terraform', type: 'terraform'
           sh 'terraform init'
           sh 'terraform plan'
           }
