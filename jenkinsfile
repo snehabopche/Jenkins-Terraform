@@ -6,7 +6,6 @@ pipeline {
        AWS_SECRET_ACCESS_KEY = credentials('cf87b673-e3ee-4868-b3d9-f63071fc4d15')
     }
 
-
     stages {
       stage('fetch_latest_code') {
         steps {
