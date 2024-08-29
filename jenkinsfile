@@ -20,7 +20,21 @@ pipeline {
           sh 'terraform plan'
           }
       }
+      
+      stage('Approval') {
+            steps {
+                script {
+                    def userInput = input(
+                        id: 'Approval', message: 'Approve the deployment?', 
+                        parameters: [choice(name: 'Deploy', choices: 'Yes\nNo', description: 'Do you want to deploy?')]
+                    )
 
+                    if (userInput == 'No') {
+                        error 'Deployment aborted by the user'
+                    }
+                }
+            }
+        }
        stage('TF Apply') {
         steps {
           sh 'terraform apply -auto-approve'
