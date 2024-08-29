@@ -21,11 +21,11 @@ pipeline {
           }
       }
 
-      stage('Manual Approval') {
-            steps {
-      input(id: 'manual-approval', message: 'Do you want to proceed?', ok: 'Proceed')
-            }
-        }
+#      stage('Manual Approval') {
+ #           steps {
+  #    input(id: 'manual-approval', message: 'Do you want to proceed?', ok: 'Proceed')
+   #         }
+    #    }
 
        stage('TF Apply') {
         steps {
