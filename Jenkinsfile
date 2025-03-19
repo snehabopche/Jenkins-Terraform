@@ -3,8 +3,8 @@ pipeline {
 
     
     environment {
-       AWS_ACCESS_KEY_ID     = credentials('AWS_ACCESS_KEY_ID')
-       AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
+       AWS_ACCESS_KEY_ID     = credentials('AKIATCKASRSI7WWHGF3A')
+       AWS_SECRET_ACCESS_KEY = credentials('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')
     }
 
     stages {
