@@ -17,9 +17,9 @@ provider "aws" {
 }
 
 resource "aws_instance" "myec2" {
-   ami = "ami-0cc3a9edb87c91b53"
+   ami = "ami-02cd5b9bfb2512340"
    instance_type = "t2.micro"
-   key_name = "Ansible"
+   key_name = "new"
    tags = {
       Name = "Example"
    }
